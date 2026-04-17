@@ -12,8 +12,16 @@ export const useStudentStore = defineStore('students', () => {
 
     const mostRecentStudent = ref( {} ) // empty object
 
-    return {
+    function addNewStudent(student) {
+        studentList.value.push(student)
+    }
+
+    return { // the below returned data can be accessed by the parent or other components.
+        // reactive data
         studentList,
         mostRecentStudent,
+
+        // functions
+        addNewStudent
     }
 })

@@ -3,6 +3,12 @@
 
 import { useStudentStore } from '../stores/StudentsStore';
 
+import { storeToRefs } from 'pinia';
+
+const studentStore = useStudentStore()
+
+// adding the { } pulls just the object not everything from studentStore
+const { studentList } = storeToRefs(studentStore)
 
 </script>
 
@@ -28,7 +34,7 @@ import { useStudentStore } from '../stores/StudentsStore';
                 When the checkbox is checked/unchecked, 
                 the student will be signed in/out -->
                 
-                <tr v-for="student in students" v-bind:class="{present: student.present, absent: !student.present }">
+                <tr v-for="student in studentList" v-bind:class="{present: student.present, absent: !student.present }">
                     <td>{{ student.name }}</td>
                     <td>{{ student.starID }}</td>
                     <td>
