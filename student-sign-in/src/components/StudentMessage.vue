@@ -1,17 +1,32 @@
 <script setup>
-// Code goes here
 
+import { useStudentStore } from '../stores/StudentsStore.js'
+import { storeToRefs } from 'pinia'
+
+// assigns store value to a variable for easier versatility
+const studentStore = useStudentStore()
+
+// creates new object that is assigned to the Student Store
+const { mostRecentStudent } = storeToRefs(studentStore)
 
 </script>
 
 <template>
-<!-- HTML Template here -->
 
+<div id="welcome-or-goodbye-message" class="m-2">
+    <div v-if="mostRecentStudent.name">
+
+        <div v-if="mostRecentStudent.present" class="alert alert-success">
+            Welcome, {{ mostRecentStudent.name }}!
+        </div>
+        <div v-else class="alert alert-info">
+            Goodbye, {{ mostRecentStudent.name }}. See you later!
+        </div>
+    </div>
+</div>
 
 </template>
 
 <style scoped>
-/* CSS for this component */
-
 
 </style>
